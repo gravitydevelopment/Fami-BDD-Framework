@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/Users/User/Documents/02_MyDevelopment/eclipse_workspace/fami-bdd-framework/src/main/resources/libs/cucumber-core-1.2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Documents/02_MyDevelopment/eclipse_workspace/fami-bdd-framework/src/main/resources/libs/cucumber-html-0.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Documents/02_MyDevelopment/eclipse_workspace/fami-bdd-framework/src/main/resources/libs/cucumber-java-1.2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Documents/02_MyDevelopment/eclipse_workspace/fami-bdd-framework/src/main/resources/libs/cucumber-junit-1.2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Documents/02_MyDevelopment/eclipse_workspace/fami-bdd-framework/src/main/resources/libs/cucumber-jvm-deps-1.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Documents/02_MyDevelopment/eclipse_workspace/fami-bdd-framework/src/main/resources/libs/gherkin-2.12.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Documents/02_MyDevelopment/eclipse_workspace/fami-bdd-framework/src/main/resources/libs/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Documents/02_MyDevelopment/eclipse_workspace/fami-bdd-framework/src/main/resources/libs/selenium-java-3.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Documents/02_MyDevelopment/eclipse_workspace/fami-bdd-framework/src/main/resources/libs/selenium-server-standalone-3.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Documents/02_MyDevelopment/eclipse_workspace/fami-bdd-framework/src/main/resources/libs/slf4j-api-1.8.0-beta2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Documents/02_MyDevelopment/eclipse_workspace/fami-bdd-framework/src/main/resources/libs/slf4j-simple-1.8.0-beta2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Documents/02_MyDevelopment/eclipse_workspace/fami-bdd-framework/src/main/resources/libs/testng-6.14.3.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

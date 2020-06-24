@@ -1,0 +1,70 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 4,
+        "name": "User access the Air Asia Home Page",
+        "description": "",
+        "id": "airasiahomepage;user-access-the-air-asia-home-page",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 948047100,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "I access the Air Asia web application home page",
+            "match": {
+              "location": "airasiaHomepage.accessHomePage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 2364107000,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I verify all the expected top panel link are available",
+            "match": {
+              "location": "airasiaHomepage.verifyTopPanel()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 3675960700,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "I verify that the booking panel is available",
+            "match": {
+              "location": "airasiaHomepage.verifyBookingPanel()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 320385900,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "I verify that the login panel is available",
+            "match": {
+              "location": "airasiaHomepage.verifyLoginPanel()"
+            },
+            "keyword": "And "
+          }
+        ]
+      }
+    ],
+    "name": "airAsiaHomePage",
+    "description": "Accessing the Air Asia web home page and verify its validity",
+    "id": "airasiahomepage",
+    "keyword": "Feature",
+    "uri": "airAsiaHomePage.feature"
+  }
+]

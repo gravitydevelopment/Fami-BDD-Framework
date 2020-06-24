@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="7.308501">
+<testcase classname="airAsiaHomePage" name="User access the Air Asia Home Page" time="7.308501">
+<system-out><![CDATA[Given I access the Air Asia web application home page.......................passed
+Then I verify all the expected top panel link are available.................passed
+And I verify that the booking panel is available............................passed
+And I verify that the login panel is available..............................passed
+]]></system-out>
+</testcase>
+</testsuite>

@@ -1,0 +1,184 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>fami-bdd-framework</groupId>
+  <artifactId>fami-bdd-framework</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+       <jre.level>1.8</jre.level>
+       <jdk.level>1.8</jdk.level>
+       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+       <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+       <dependency>
+           <groupId>org.apache.commons</groupId>
+           <artifactId>commons-lang3</artifactId>
+           <version>3.10</version>
+       </dependency>
+       <!-- https://mvnrepository.com/artifact/junit/junit -->
+       <dependency>
+           <groupId>junit</groupId>
+           <artifactId>junit</artifactId>
+           <version>4.12</version>
+           <scope>compile</scope>
+       </dependency>
+       
+       <!-- https://mvnrepository.com/artifact/commons-cli/commons-cli -->
+       <dependency>
+           <groupId>commons-cli</groupId>
+           <artifactId>commons-cli</artifactId>
+           <version>1.4</version>
+       </dependency>
+       <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+       <dependency>
+           <groupId>org.seleniumhq.selenium</groupId>
+           <artifactId>selenium-java</artifactId>
+           <version>3.11.0</version>
+       </dependency>
+       
+       <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-core -->
+       <dependency>
+           <groupId>info.cukes</groupId>
+           <artifactId>cucumber-core</artifactId>
+           <version>1.2.5</version>
+       </dependency>
+       
+       <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-html -->
+       <dependency>
+           <groupId>info.cukes</groupId>
+           <artifactId>cucumber-html</artifactId>
+           <version>0.2.3</version>
+       </dependency>
+       
+       <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-java -->
+       <dependency>
+           <groupId>info.cukes</groupId>
+           <artifactId>cucumber-java</artifactId>
+           <version>1.2.5</version>
+       </dependency>       
+       <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-junit -->
+       <dependency>
+           <groupId>info.cukes</groupId>
+           <artifactId>cucumber-junit</artifactId>
+           <version>1.2.5</version>
+           <scope>compile</scope>
+       </dependency>    
+       <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-jvm-deps -->
+       <dependency>
+           <groupId>info.cukes</groupId>
+           <artifactId>cucumber-jvm-deps</artifactId>
+           <version>1.0.5</version>
+           <scope>compile</scope>
+       </dependency>
+       <!-- https://mvnrepository.com/artifact/info.cukes/gherkin -->
+       <dependency>
+           <groupId>info.cukes</groupId>
+           <artifactId>gherkin</artifactId>
+           <version>2.12.2</version>
+           <scope>compile</scope>
+       </dependency>
+       <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+       <dependency>
+           <groupId>org.mockito</groupId>
+           <artifactId>mockito-all</artifactId>
+           <version>1.10.19</version>
+           <scope>test</scope>
+       </dependency>
+       <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+       <dependency>
+           <groupId>org.slf4j</groupId>
+           <artifactId>slf4j-simple</artifactId>
+           <version>1.8.0-beta2</version>
+           <scope>test</scope>
+       </dependency>
+       <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+       <dependency>
+           <groupId>org.slf4j</groupId>
+           <artifactId>slf4j-api</artifactId>
+           <version>1.8.0-beta2</version>
+       </dependency>
+       <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+       <dependency>
+           <groupId>log4j</groupId>
+           <artifactId>log4j</artifactId>
+           <version>1.2.17</version>
+       </dependency>   
+       <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+       <dependency>
+           <groupId>org.testng</groupId>
+           <artifactId>testng</artifactId>
+           <version>6.14.3</version>
+           <scope>compile</scope>
+       </dependency>    
+       <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+       <dependency>
+           <groupId>org.assertj</groupId>
+           <artifactId>assertj-core</artifactId>
+           <version>3.5.2</version>
+           <scope>test</scope>
+       </dependency>
+       <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-assembly-plugin -->
+       <dependency>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-assembly-plugin</artifactId>
+           <version>3.1.1</version>
+       </dependency>
+  </dependencies>
+
+ 
+  <build>
+    <finalName>fami-bdd-framework</finalName>
+    <sourceDirectory>src/main/java/fami/app/framework</sourceDirectory>
+    <plugins>    
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version>
+          <configuration>
+          <source>${jdk.level}</source>
+          <target>${jdk.level}</target>
+          </configuration>
+      </plugin>
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.18.1</version>
+              <configuration>
+              </configuration>
+      </plugin>
+      <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>1.6.0</version>
+          <configuration>
+              <mainClass>fami.app.framework.init</mainClass>
+          </configuration>
+      </plugin>
+      <plugin>
+          <groupId>com.trivago.rta</groupId>
+          <artifactId>cluecumber-report-plugin</artifactId>
+          <version>2.5.0</version>
+          <executions>
+              <execution>
+                  <id>report</id>
+                  <phase>post-integration-test</phase>
+                  <goals>
+                      <goal>reporting</goal>
+                  </goals>
+              </execution>
+          </executions>
+          <configuration>
+              <sourceJsonReportDirectory>report/json</sourceJsonReportDirectory>
+              <generatedHtmlReportDirectory>${project.build.directory}/cluecumber-report</generatedHtmlReportDirectory>
+          </configuration>    
+      </plugin>
+    </plugins>
+    </build>
+  
+</project>
+
+
+

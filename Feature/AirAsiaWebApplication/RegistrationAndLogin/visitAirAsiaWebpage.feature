@@ -1,5 +1,5 @@
 Feature: airAsiaHomePage
-	Accessing the Air Asia web home page and verify its validity
+	Accessing the Air Asia web page and verify its validity
 
 	Scenario: User access the Air Asia Home Page
 		Given I access the Air Asia web application home page

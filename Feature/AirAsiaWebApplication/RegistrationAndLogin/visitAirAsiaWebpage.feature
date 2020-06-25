@@ -10,7 +10,3 @@ Feature: visitAirAsiaWebpage
 		Then I verify all the expected top panel link are available
 		And I verify that the booking panel is available
 		And I verify that the login panel is available
-		
-	  @fea01_01_sce02
-	Scenario: test
-		Given I test add departure from "Penang"

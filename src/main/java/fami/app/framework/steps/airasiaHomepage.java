@@ -20,6 +20,8 @@ public class airasiaHomepage {
 	
 	private static final testLogger log = testLogger.getLogger("fami.app.framework.stepDefinitions.webStep");
 	
+	/** Element Definitions **/
+	
 	// Top Panel Element locator
 	By topPanel_linktext_mybooking = By.linkText("My bookings");
 	By topPanel_linktext_checkin = By.linkText("Check-in");
@@ -44,10 +46,10 @@ public class airasiaHomepage {
 	By loginSignupPanel_linkText_forgotpassword = By.xpath("//*[@id=\"sso-login-signup-widget\"]/div[1]/div[1]/div[1]/section[1]/aa-tabs[1]/div[1]/section[1]/aa-tab[1]/div[1]/sso-login[1]/div[1]/form[1]/div[3]/a[1]");
 	By loginSignupPanel_notificationText_failLogin = By.xpath("//div[@id='sso-login-signup-widget']/div/div/div/section/aa-tabs/div/section/aa-tab/div/sso-login/div/form/div/div");
 	
-	
-	
-	
-	
+
+		
+
+	/** Steps Definitions **/
 	
 	@Given("I access the Air Asia web application home page")
 	public void accessHomePage() throws Throwable {
@@ -80,10 +82,12 @@ public class airasiaHomepage {
 		webDefinitions.verifyElement(AutomationRunner.driver, loginSignupPanel_entryField_password);
 		webDefinitions.verifyElement(AutomationRunner.driver, loginSignupPanel_button_login);
 		webDefinitions.verifyElement(AutomationRunner.driver, loginSignupPanel_linkText_forgotpassword);
+		webDefinitions.clickElement(AutomationRunner.driver, loginSignupPanel_button_closeLoginPanel);
 	}
 	
 	@And("I attemp to login with a blank username and password")
 	public void accessLoginPanelwithBlankUsernameandPassword() throws Throwable {
+		webDefinitions.clickElement(AutomationRunner.driver, topPanel_button_loginsignup);
 		webDefinitions.insertValueElement(AutomationRunner.driver, loginSignupPanel_entryField_username, "");
 		webDefinitions.insertValueElement(AutomationRunner.driver, loginSignupPanel_entryField_password, "");
 		webDefinitions.clickElement(AutomationRunner.driver, loginSignupPanel_button_login);
@@ -91,16 +95,21 @@ public class airasiaHomepage {
 	
 	@And("I attemp to login with an invalid username and password")
 	public void accessLoginPanelwithInvalidCredential() throws Throwable {
+		webDefinitions.clickElement(AutomationRunner.driver, topPanel_button_loginsignup);
 		webDefinitions.insertValueElement(AutomationRunner.driver, loginSignupPanel_entryField_username, "invalid username");
 		webDefinitions.insertValueElement(AutomationRunner.driver, loginSignupPanel_entryField_password, "invalid password");
 		webDefinitions.clickElement(AutomationRunner.driver, loginSignupPanel_button_login);
 	}
 	
-	
-	@And("^I very that the login attempt is failing with a notification message \"([^\"]*)\"$")
+	@And("^I verify that the login attempt is failing with a notification message \"([^\"]*)\"$")
 	public void verifyLoginFail(String value) throws Throwable {
 		webDefinitions.verifyElementTextValue(AutomationRunner.driver, loginSignupPanel_notificationText_failLogin, value);
 		webDefinitions.clickElement(AutomationRunner.driver, loginSignupPanel_button_closeLoginPanel);
+	}
+	
+	@And("^I test add departure from \"([^\"]*)\"$")
+	public void test(String value) throws Throwable {
+		webDefinitions.insertValueElement(AutomationRunner.driver, bookingPanel_entryField_destinationto, value);
 	}
 	
 	

@@ -40,8 +40,9 @@ public class airasiaHomepage {
 	By loginSignupPanel_entryField_username = By.xpath("//*[@id=\"sso-login-email-input\"]");
 	By loginSignupPanel_entryField_password = By.xpath("//*[@id=\"sso-login-password-input\"]");
 	By loginSignupPanel_button_login = By.xpath("//*[@id=\"sso-login-signup-widget\"]/div[1]/div[1]/div[1]/section[1]/aa-tabs[1]/div[1]/section[1]/aa-tab[1]/div[1]/sso-login[1]/div[1]/form[1]/button[1]");
+	By loginSignupPanel_button_closeLoginPanel = By.cssSelector(".sso-close-btn");
 	By loginSignupPanel_linkText_forgotpassword = By.xpath("//*[@id=\"sso-login-signup-widget\"]/div[1]/div[1]/div[1]/section[1]/aa-tabs[1]/div[1]/section[1]/aa-tab[1]/div[1]/sso-login[1]/div[1]/form[1]/div[3]/a[1]");
-	
+	By loginSignupPanel_notificationText_failLogin = By.xpath("//div[@id='sso-login-signup-widget']/div/div/div/section/aa-tabs/div/section/aa-tab/div/sso-login/div/form/div/div");
 	
 	
 	
@@ -79,6 +80,20 @@ public class airasiaHomepage {
 		webDefinitions.verifyElement(AutomationRunner.driver, loginSignupPanel_entryField_password);
 		webDefinitions.verifyElement(AutomationRunner.driver, loginSignupPanel_button_login);
 		webDefinitions.verifyElement(AutomationRunner.driver, loginSignupPanel_linkText_forgotpassword);
+	}
+	
+	@And("I attemp to login with an invalid username and password")
+	public void accessLoginPanelwithInvalidCredential() throws Throwable {
+		webDefinitions.insertValueElement(AutomationRunner.driver, loginSignupPanel_entryField_username, "invalid username");
+		webDefinitions.insertValueElement(AutomationRunner.driver, loginSignupPanel_entryField_password, "invalid password");
+		webDefinitions.clickElement(AutomationRunner.driver, loginSignupPanel_button_login);
+		webDefinitions.verifyElementTextValue(AutomationRunner.driver, loginSignupPanel_notificationText_failLogin, "Please enter a valid email (e.g: example@email.com)");
+	}
+	
+	@And("^I very that the login attempt is failing with a notification message \"([^\"]*)\"$")
+	public void verifyLoginFail(String value) throws Throwable {
+		webDefinitions.verifyElementTextValue(AutomationRunner.driver, loginSignupPanel_notificationText_failLogin, value);
+		webDefinitions.clickElement(AutomationRunner.driver, loginSignupPanel_button_closeLoginPanel);
 	}
 	
 	

@@ -82,13 +82,20 @@ public class airasiaHomepage {
 		webDefinitions.verifyElement(AutomationRunner.driver, loginSignupPanel_linkText_forgotpassword);
 	}
 	
+	@And("I attemp to login with a blank username and password")
+	public void accessLoginPanelwithBlankUsernameandPassword() throws Throwable {
+		webDefinitions.insertValueElement(AutomationRunner.driver, loginSignupPanel_entryField_username, "");
+		webDefinitions.insertValueElement(AutomationRunner.driver, loginSignupPanel_entryField_password, "");
+		webDefinitions.clickElement(AutomationRunner.driver, loginSignupPanel_button_login);
+	}
+	
 	@And("I attemp to login with an invalid username and password")
 	public void accessLoginPanelwithInvalidCredential() throws Throwable {
 		webDefinitions.insertValueElement(AutomationRunner.driver, loginSignupPanel_entryField_username, "invalid username");
 		webDefinitions.insertValueElement(AutomationRunner.driver, loginSignupPanel_entryField_password, "invalid password");
 		webDefinitions.clickElement(AutomationRunner.driver, loginSignupPanel_button_login);
-		webDefinitions.verifyElementTextValue(AutomationRunner.driver, loginSignupPanel_notificationText_failLogin, "Please enter a valid email (e.g: example@email.com)");
 	}
+	
 	
 	@And("^I very that the login attempt is failing with a notification message \"([^\"]*)\"$")
 	public void verifyLoginFail(String value) throws Throwable {

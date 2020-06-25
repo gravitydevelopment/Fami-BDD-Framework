@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 //import com.gargoylesoftware.htmlunit.javascript.host.Element;
@@ -100,6 +102,12 @@ import fami.app.framework.helpers.webActions;
     public static void verifyElementTextValue(WebDriver myDriver, By myElement, String myValue) {
     	String actualValue = myDriver.findElement(myElement).getText();
         Assert.assertEquals(actualValue.contains(myValue), true);
+    }
+    
+    public static void insertValueAndEnter(WebDriver myDriver, By myElement, String myValue) {
+    	myDriver.findElement(myElement).sendKeys(myValue); 
+    	Actions action = new Actions(myDriver);
+    	action.sendKeys(Keys.ENTER).build().perform();
     }
   
 //  /**

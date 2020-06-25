@@ -107,13 +107,15 @@ public class airasiaHomepage {
 		webDefinitions.clickElement(AutomationRunner.driver, loginSignupPanel_button_closeLoginPanel);
 	}
 	
-	@And("^I test add departure from \"([^\"]*)\"$")
-	public void test(String value) throws Throwable {
-		webDefinitions.insertValueElement(AutomationRunner.driver, bookingPanel_entryField_destinationto, value);
+	@And("^I select the departure destination \"([^\"]*)\"$")
+	public void selectDepartureDestination(String value) throws Throwable {
+		webDefinitions.insertValueAndEnter(AutomationRunner.driver, bookingPanel_entryField_destinationto, value);
 	}
 	
-	
-	
+	@And("I click the flight search button")
+	public void clickFlightSearchButton() throws Throwable {
+		webDefinitions.clickElement(AutomationRunner.driver, bookingPanel_button_searchbooking);
+	}
 	
 	
 }

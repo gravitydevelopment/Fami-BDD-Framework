@@ -12,7 +12,7 @@
         "steps": [
           {
             "result": {
-              "duration": 948047100,
+              "duration": 1226801800,
               "status": "passed"
             },
             "line": 5,
@@ -24,7 +24,7 @@
           },
           {
             "result": {
-              "duration": 2364107000,
+              "duration": 4133150500,
               "status": "passed"
             },
             "line": 6,
@@ -36,7 +36,7 @@
           },
           {
             "result": {
-              "duration": 3675960700,
+              "duration": 2653072400,
               "status": "passed"
             },
             "line": 7,
@@ -48,7 +48,7 @@
           },
           {
             "result": {
-              "duration": 320385900,
+              "duration": 329393300,
               "status": "passed"
             },
             "line": 8,
@@ -59,12 +59,140 @@
             "keyword": "And "
           }
         ]
+      },
+      {
+        "line": 10,
+        "name": "Login with without providing the credential information",
+        "description": "",
+        "id": "airasiahomepage;login-with-without-providing-the-credential-information",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 2811296800,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "I access the Air Asia web application home page",
+            "match": {
+              "location": "airasiaHomepage.accessHomePage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1256432200,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "I verify that the login panel is available",
+            "match": {
+              "location": "airasiaHomepage.verifyLoginPanel()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 298037100,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "I attemp to login with a blank username and password",
+            "match": {
+              "location": "airasiaHomepage.accessLoginPanelwithBlankUsernameandPassword()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 175446000,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "I very that the login attempt is failing with a notification message \"Please enter your Email address.\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Please enter your Email address.",
+                  "offset": 70
+                }
+              ],
+              "location": "airasiaHomepage.verifyLoginFail(String)"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "line": 17,
+        "name": "Login with invalid user credential",
+        "description": "",
+        "id": "airasiahomepage;login-with-invalid-user-credential",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 240442100,
+              "status": "passed"
+            },
+            "line": 18,
+            "name": "I access the Air Asia web application home page",
+            "match": {
+              "location": "airasiaHomepage.accessHomePage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1119922300,
+              "status": "passed"
+            },
+            "line": 19,
+            "name": "I verify that the login panel is available",
+            "match": {
+              "location": "airasiaHomepage.verifyLoginPanel()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 1487618000,
+              "status": "passed"
+            },
+            "line": 20,
+            "name": "I attemp to login with an invalid username and password",
+            "match": {
+              "location": "airasiaHomepage.accessLoginPanelwithInvalidCredential()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 414433800,
+              "status": "passed"
+            },
+            "line": 21,
+            "name": "I very that the login attempt is failing with a notification message \"Please enter a valid email (e.g: example@email.com)\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Please enter a valid email (e.g: example@email.com)",
+                  "offset": 70
+                }
+              ],
+              "location": "airasiaHomepage.verifyLoginFail(String)"
+            },
+            "keyword": "Then "
+          }
+        ]
       }
     ],
     "name": "airAsiaHomePage",
-    "description": "Accessing the Air Asia web home page and verify its validity",
+    "description": "Accessing the Air Asia web page and verify its validity",
     "id": "airasiahomepage",
     "keyword": "Feature",
-    "uri": "airAsiaHomePage.feature"
+    "uri": "AirAsiaWebApplication/RegistrationAndLogin/visitAirAsiaWebpage.feature"
   }
 ]

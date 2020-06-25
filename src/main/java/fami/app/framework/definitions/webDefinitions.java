@@ -8,6 +8,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 //import com.gargoylesoftware.htmlunit.javascript.host.Element;
 
@@ -88,8 +89,17 @@ import fami.app.framework.helpers.webActions;
     	myDriver.findElement(myElement);   
     }
     
+    public static void insertValueElement(WebDriver myDriver, By myElement, String myValue) {
+    	myDriver.findElement(myElement).sendKeys(myValue);   
+    }
+    
     public static void clickElement(WebDriver myDriver, By myElement) {
     	myDriver.findElement(myElement).click();   
+    }
+    
+    public static void verifyElementTextValue(WebDriver myDriver, By myElement, String myValue) {
+    	String actualValue = myDriver.findElement(myElement).getText();
+        Assert.assertEquals(actualValue.contains(myValue), true);
     }
   
 //  /**

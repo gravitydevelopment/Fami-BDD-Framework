@@ -26,21 +26,19 @@ public class webDefinitions {
 	private static final testLogger log = testLogger.getLogger("fami.app.framework.definitions.webDefinitions");
 	public static WebDriver driver = AutomationRunner.driver;
 	
-	static webDefinitions definition;
-	
 	
 	/**
 	 * This is a method to initialize the browser object with the website url
 	 * @param myDriver Webdriver object
 	 * @param myUrl Designated web url
 	 */
-	public static void accessPage(WebDriver myDriver, String myUrl) {
+	public static void accessPage(String myUrl) {
 		
-		if (myUrl.isEmpty()) { log.info("The provided url is blank, unable to access the webpage" );}
+		if (myUrl.isEmpty()) { log.error("The provided url is blank, unable to access the webpage" );}
 		else { log.info("STEP::Accessing webpage url: " + myUrl); }
 		
-		myDriver.get(myUrl);
-		myDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.get(myUrl);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	/**
@@ -48,8 +46,8 @@ public class webDefinitions {
 	 * @param myDriver Webdriver object
 	 * @param myElement Web element locator (either xpath, id, css, class, name)
 	 */
-	public static void verifyElement(WebDriver myDriver, By myElement) {
-		myDriver.findElement(myElement);   
+	public static void verifyElement(By myElement) {
+		driver.findElement(myElement);   
 	}
 
 	/**
@@ -58,8 +56,8 @@ public class webDefinitions {
 	 * @param myElement Web element locator (either xpath, id, css, class, name)
 	 * @param myValue String of input value
 	 */
-	public static void insertValueElement(WebDriver myDriver, By myElement, String myValue) {
-		myDriver.findElement(myElement).sendKeys(myValue);   
+	public static void insertValueElement(By myElement, String myValue) {
+		driver.findElement(myElement).sendKeys(myValue);   
 	}
 
 	/**
@@ -68,9 +66,9 @@ public class webDefinitions {
 	 * @param myElement Web element locator (either xpath, id, css, class, name)
 	 * @param myValue String of input value
 	 */		
-	public static void insertValueAndEnter(WebDriver myDriver, By myElement, String myValue) {
-		myDriver.findElement(myElement).sendKeys(myValue); 
-		Actions action = new Actions(myDriver);
+	public static void insertValueAndEnter(By myElement, String myValue) {
+		driver.findElement(myElement).sendKeys(myValue); 
+		Actions action = new Actions(driver);
 		action.sendKeys(Keys.ENTER).build().perform();
 	}
 
@@ -79,8 +77,8 @@ public class webDefinitions {
 	 * @param myDriver Webdriver object
 	 * @param myElement Web element locator (either xpath, id, css, class, name)
 	 */	
-	public static void clickElement(WebDriver myDriver, By myElement) {
-		myDriver.findElement(myElement).click();
+	public static void clickElement(By myElement) {
+		driver.findElement(myElement).click();
 		try {Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); }
 	}
 
@@ -90,8 +88,8 @@ public class webDefinitions {
 	 * @param myElement Web element locator (either xpath, id, css, class, name)
 	 * @param myValue String of input value
 	 */	
-	public static void verifyElementTextValue(WebDriver myDriver, By myElement, String myValue) {
-		String actualValue = myDriver.findElement(myElement).getText();
+	public static void verifyElementTextValue(By myElement, String myValue) {
+		String actualValue = driver.findElement(myElement).getText();
 		Assert.assertEquals(actualValue.contains(myValue), true);
 	}
 

@@ -4,7 +4,10 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import fami.app.framework.AutomationRunner;
@@ -29,7 +32,6 @@ public class webDefinitions {
 	
 	/**
 	 * This is a method to initialize the browser object with the website url
-	 * @param myDriver Webdriver object
 	 * @param myUrl Designated web url
 	 */
 	public static void accessPage(String myUrl) {
@@ -44,10 +46,27 @@ public class webDefinitions {
 		catch (Exception e) { log.error("The provided url is blank, unable to access the webpage" + "\n" + e);}
 		
 	}
+	
+	
+	/**
+	 * This is a method to check and validate the page title id
+	 * @param myPageTitle Expected page id
+	 */
+	public static void verifyPageTitle(String myPageTitle) {
+		
+		try { 
+			Assert.assertEquals(driver.getTitle(), myPageTitle, "FAIL: Page Title are not match. ");
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);	
+			log.info("Verify page title are: " + myPageTitle); 
+		}
+		
+		catch (Exception e) { log.error("Unable to verify the page title, due to: " + "\n" + e);}
+		
+	}
+	
 
 	/**
 	 * This is a method to verify the web element
-	 * @param myDriver Webdriver object
 	 * @param myElement Web element locator (either xpath, id, css, class, name)
 	 */
 	public static void verifyElement(By myElement) {
@@ -62,13 +81,13 @@ public class webDefinitions {
 
 	/**
 	 * This is a method to interact with the web element by inserting an input value
-	 * @param myDriver Webdriver object
 	 * @param myElement Web element locator (either xpath, id, css, class, name)
 	 * @param myValue String of input value
 	 */
 	public static void insertValueElement(By myElement, String myValue) {
 		
 		try { 
+			driver.findElement(myElement).clear();
 			driver.findElement(myElement).sendKeys(myValue);
 			log.info("Inserting value " + "\"" + myValue + "\"" + " element: " + myElement); 
 		}
@@ -78,13 +97,13 @@ public class webDefinitions {
 
 	/**
 	 * This is a method to interact with the web element by inserting an input value and perform an enter key press action
-	 * @param myDriver Webdriver object
 	 * @param myElement Web element locator (either xpath, id, css, class, name)
 	 * @param myValue String of input value
 	 */		
 	public static void insertValueAndEnter(By myElement, String myValue) {
 
 		try { 
+			driver.findElement(myElement).clear();
 			driver.findElement(myElement).sendKeys(myValue); 
 			Actions action = new Actions(driver);
 			action.sendKeys(Keys.ENTER).build().perform();
@@ -93,10 +112,19 @@ public class webDefinitions {
 		
 		catch (Exception e) { log.error("Fail to insert value and perform enter action to element: " + myElement + "\n" + e);}	
 	}
+	
+	public static void clearValue(By myElement) {
+
+		try { 
+			driver.findElement(myElement).clear(); 
+			log.info("Clear the value of element: " + myElement);
+		}
+		
+		catch (Exception e) { log.error("Fail to clear value of element: " + myElement + "\n" + e);}	
+	}
 
 	/**
 	 * This is a method to interact with the web element by clicking the element object
-	 * @param myDriver Webdriver object
 	 * @param myElement Web element locator (either xpath, id, css, class, name)
 	 */	
 	public static void clickElement(By myElement) {
@@ -109,10 +137,29 @@ public class webDefinitions {
 		
 		catch (Exception e) { log.error("Fail to click element: " + myElement + "\n" + e);}	
 	}
+	
+	/**
+	 * This is a method to interact with the web element by clicking the element object and wait for the page load completed
+	 * @param myElement Web element locator (either xpath, id, css, class, name)
+	 */	
+	public static void clickElementAndWaitPageLoad(By myElement, By waitedElement) {
+		
+		try { 
+			WebDriverWait wait = new WebDriverWait(driver, 20);
+			
+			driver.findElement(myElement).click();
 
+			WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(waitedElement));
+			wait.until(ExpectedConditions.stalenessOf(element));
+			
+			log.info("Clicking element: " + myElement + " and wait for the page load completed.");
+			Thread.sleep(1000); 
+		}
+		
+		catch (Exception e) { log.error("Fail to click element: " + myElement + "\n" + e);}	
+	}
 	/**
 	 * This is a method to verify the value hold by a web element object
-	 * @param myDriver Webdriver object
 	 * @param myElement Web element locator (either xpath, id, css, class, name)
 	 * @param myValue String of input value
 	 */	

@@ -1,6 +1,10 @@
 package fami.app.framework.steps.AirAsia;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
+
+import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import fami.app.framework.definitions.webDefinitions;
@@ -25,14 +29,6 @@ public class airasiaHomepage {
 	By topPanel_linktext_support = By.linkText("Support");
 	By topPanel_button_loginsignup = By.xpath("//*[@id=\"loginModal\"]");
 	
-	// Booking Panel Element locator
-	By bookingPanel_entryField_destinationfrom = By.xpath("//div[@id='my-react']/div/div");
-	By bookingPanel_entryField_destinationto = By.xpath("//*[@id=\"my-react\"]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/input[1]");                                                  
-	By bookingPanel_entryField_promo = By.xpath("//div[@id='my-react']/div/div/div[2]/div[3]/div/div/input");
-	By bookingPanel_datePicker_datedepart = By.xpath("//input[@value='04/07/2020']");
-	By bookingPanel_datePicker_datereturn = By.xpath("//input[@value='07/07/2020']");
-	By bookingPanel_button_searchbooking = By.id("aa-web-search-button");
-	
 	// LoginSignUp Panel Element locator
 	By loginSignupPanel_entryField_username = By.xpath("//*[@id=\"sso-login-email-input\"]");
 	By loginSignupPanel_entryField_password = By.xpath("//*[@id=\"sso-login-password-input\"]");
@@ -41,9 +37,24 @@ public class airasiaHomepage {
 	By loginSignupPanel_linkText_forgotpassword = By.xpath("//*[@id=\"sso-login-signup-widget\"]/div[1]/div[1]/div[1]/section[1]/aa-tabs[1]/div[1]/section[1]/aa-tab[1]/div[1]/sso-login[1]/div[1]/form[1]/div[3]/a[1]");
 	By loginSignupPanel_notificationText_failLogin = By.xpath("//div[@id='sso-login-signup-widget']/div/div/div/section/aa-tabs/div/section/aa-tab/div/sso-login/div/form/div/div");
 	
+	// Booking Panel Element locator
+	By bookingPanel_panelTab_flights = By.xpath("//button[@id='product-tile-flight']/div[2]");
+	By bookingPanel_entryField_destinationfrom = By.xpath("//div[@id='my-react']/div/div");
+	By bookingPanel_entryField_destinationto = By.xpath("//*[@id=\"my-react\"]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/input[1]");                                                  
+	By bookingPanel_entryField_promo = By.xpath("//div[@id='my-react']/div/div/div[2]/div[3]/div/div/input");
+	By bookingPanel_segmentDate_segmentArea = By.xpath("//*[@id=\"fsw-calendar-web\"]/div[1]");
+	By bookingPanel_segmentDate_datedepart = By.xpath("//*[@id=\"aaCalendar-header\"]/div[1]/div[1]/div[1]/div[2]/input[1]");
+	By bookingPanel_entryDate_datedepart = By.cssSelector(".css-1dbjc4n:nth-child(2) > .css-1dbjc4n:nth-child(1) > .css-1dbjc4n > .css-1dbjc4n > .css-11aywtz");
+	By bookingPanel_segmentDate_datereturn = By.xpath("//*[@id=\"aaCalendar-header\"]/div[1]/div[2]/div[1]/div[2]/input[1]");
+	By bookingPanel_entryDate_datereturn = By.cssSelector(".css-1dbjc4n:nth-child(2) > .css-1dbjc4n:nth-child(2) > .css-1dbjc4n > .css-1dbjc4n > .css-11aywtz");
+	By bookingPanel_button_searchbooking = By.xpath("//div[@id='aa-web-search-button']/div");
+	//By bookingPanel_button_searchbooking = By.id("aa-web-search-button");
+	//By bookingPanel_button_searchbooking = By.cssSelector("#my-react > .css-1dbjc4n > .css-1dbjc4n > .css-1dbjc4n > .css-1dbjc4n > .css-1dbjc4n > #aa-web-search-button > .css-901oao");
 
-		
-
+	// Select Flight Page Elements
+	By topWizardPanel_wizardIcon_selectFlights = By.cssSelector("#airasia-breadcrumb-span-select-link-heatmap > .material-icons");
+	
+	
 	/** Steps Definitions **/
 	
 	@Given("I access the Air Asia web application home page")
@@ -64,8 +75,6 @@ public class airasiaHomepage {
 	public void verifyBookingPanel() throws Throwable {
 		webDefinitions.verifyElement(bookingPanel_entryField_destinationfrom);
 		webDefinitions.verifyElement(bookingPanel_entryField_destinationto);
-		//webDefinitions.verifyElement(AutomationRunner.driver, bookingPanel_datePicker_datedepart);
-		//webDefinitions.verifyElement(AutomationRunner.driver, bookingPanel_datePicker_datereturn);
 		webDefinitions.verifyElement(bookingPanel_button_searchbooking);
 		webDefinitions.verifyElement(bookingPanel_entryField_promo);
 	}
@@ -107,9 +116,18 @@ public class airasiaHomepage {
 		webDefinitions.insertValueAndEnter(bookingPanel_entryField_destinationto, value);
 	}
 	
-	@And("I click the flight search button")
+	@And("^I select the departure and return date")
+	public void selectDepartureDate(DataTable dt) throws Throwable {
+		List<String> list = dt.asList(String.class);
+		webDefinitions.clickElement(bookingPanel_segmentDate_datedepart);
+		webDefinitions.insertValueAndEnter(bookingPanel_entryDate_datedepart, list.get(0));
+		webDefinitions.clickElement(bookingPanel_segmentDate_datereturn);
+		webDefinitions.insertValueAndEnter(bookingPanel_entryDate_datereturn, list.get(1));
+	}
+	
+	@And("I click the flight search button and verify that the system redirect me to the Select Flight web page")
 	public void clickFlightSearchButton() throws Throwable {
-		webDefinitions.clickElement(bookingPanel_button_searchbooking);
+		webDefinitions.clickElementAndWaitPageLoad(bookingPanel_button_searchbooking, topWizardPanel_wizardIcon_selectFlights);
 	}
 	
 	

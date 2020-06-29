@@ -28,6 +28,7 @@ git clone https://github.com/gravitydevelopment/Fami-BDD-Framework.git
     ```    
     - Once report successfully generated, access cluecumber test report folder in a generated target folder "~/Fami-BDD-Framework/targetcluecumber-report"
     - Open the html file "index.html" to view the test report.
+    - Apart from that, the framework also generate a log file. The log file can be access at "~/Fami-BDD-Framework/logs".
     
     
 2. Execute through virtual container instance by using docker

@@ -34,11 +34,15 @@ public class webDefinitions {
 	 */
 	public static void accessPage(String myUrl) {
 		
-		if (myUrl.isEmpty()) { log.error("The provided url is blank, unable to access the webpage" );}
-		else { log.info("Accessing webpage url: " + myUrl); }
+		if (myUrl.isEmpty()) log.error("The provided url is blank, unable to access the webpage");
 		
-		driver.get(myUrl);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		try { 
+			driver.get(myUrl); driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);	
+			log.info("Accessing webpage url: " + myUrl); 
+		}
+		
+		catch (Exception e) { log.error("The provided url is blank, unable to access the webpage" + "\n" + e);}
+		
 	}
 
 	/**
@@ -47,8 +51,13 @@ public class webDefinitions {
 	 * @param myElement Web element locator (either xpath, id, css, class, name)
 	 */
 	public static void verifyElement(By myElement) {
-		driver.findElement(myElement);
-		log.info("Verifying element: " + myElement);
+		
+		try { 
+			driver.findElement(myElement);
+			log.info("Verifying element: " + myElement); 
+		}
+		
+		catch (Exception e) { log.error("Unable to verify the element: " + myElement + "\n" + e);}
 	}
 
 	/**
@@ -58,8 +67,13 @@ public class webDefinitions {
 	 * @param myValue String of input value
 	 */
 	public static void insertValueElement(By myElement, String myValue) {
-		driver.findElement(myElement).sendKeys(myValue);   
-		log.info("Inserting value " + "\"" + myValue + "\"" + " element: " + myElement);
+		
+		try { 
+			driver.findElement(myElement).sendKeys(myValue);
+			log.info("Inserting value " + "\"" + myValue + "\"" + " element: " + myElement); 
+		}
+		
+		catch (Exception e) { log.error("Fail to insert value to element: " + myElement + "\n" + e);}
 	}
 
 	/**
@@ -69,10 +83,15 @@ public class webDefinitions {
 	 * @param myValue String of input value
 	 */		
 	public static void insertValueAndEnter(By myElement, String myValue) {
-		driver.findElement(myElement).sendKeys(myValue); 
-		Actions action = new Actions(driver);
-		action.sendKeys(Keys.ENTER).build().perform();
-		log.info("Inserting value " + "\"" + myValue + "\"" + " element: " + myElement + " and pressing enter key");
+
+		try { 
+			driver.findElement(myElement).sendKeys(myValue); 
+			Actions action = new Actions(driver);
+			action.sendKeys(Keys.ENTER).build().perform();
+			log.info("Inserting value " + "\"" + myValue + "\"" + " element: " + myElement + " and pressing enter key");
+		}
+		
+		catch (Exception e) { log.error("Fail to insert value and perform enter action to element: " + myElement + "\n" + e);}	
 	}
 
 	/**
@@ -81,9 +100,14 @@ public class webDefinitions {
 	 * @param myElement Web element locator (either xpath, id, css, class, name)
 	 */	
 	public static void clickElement(By myElement) {
-		driver.findElement(myElement).click();
-		try {Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); }
-		log.info("Clicking element: " + myElement);
+		
+		try { 
+			driver.findElement(myElement).click();
+			log.info("Clicking element: " + myElement);
+			Thread.sleep(1000); 
+		}
+		
+		catch (Exception e) { log.error("Fail to click element: " + myElement + "\n" + e);}	
 	}
 
 	/**
@@ -93,9 +117,14 @@ public class webDefinitions {
 	 * @param myValue String of input value
 	 */	
 	public static void verifyElementTextValue(By myElement, String myValue) {
-		String actualValue = driver.findElement(myElement).getText();
-		Assert.assertEquals(actualValue.contains(myValue), true);
-		log.info("Verify text value of the element: " + myElement + "are equal to " + "\"" + myValue + "\"");
+		
+		try { 
+			String actualValue = driver.findElement(myElement).getText();
+			Assert.assertEquals(actualValue.contains(myValue), true);
+			log.info("Verify text value of the element: " + myElement + "are equal to " + "\"" + myValue + "\"");
+		}
+		
+		catch (Exception e) { log.error("Fail to verify and assert value for element: " + myElement + "\n" + e);}	
 	}
 
 }

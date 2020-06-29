@@ -52,7 +52,7 @@ public class airasiaHomepage {
 	
 	@Given("I access the Air Asia web application home page")
 	public void accessHomePage() throws Throwable {
-		webDefinitions.accessPage("https://www.airasia.com/en/gb", AutomationRunner.driver);
+		webDefinitions.accessPage(AutomationRunner.driver, "https://www.airasia.com/en/gb");
 	}
 	
 	@And("I verify all the expected top panel link are available")

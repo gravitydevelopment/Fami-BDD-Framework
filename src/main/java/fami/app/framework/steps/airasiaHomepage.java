@@ -18,7 +18,7 @@ import fami.app.framework.helpers.testLogger;
 
 public class airasiaHomepage {
 	
-	private static final testLogger log = testLogger.getLogger("fami.app.framework.stepDefinitions.webStep");
+	private static final testLogger log = testLogger.getLogger("fami.app.framework.steps.airasiaHomepage");
 	
 	/** Element Definitions **/
 	
@@ -36,7 +36,6 @@ public class airasiaHomepage {
 	By bookingPanel_datePicker_datedepart = By.xpath("//input[@value='04/07/2020']");
 	By bookingPanel_datePicker_datereturn = By.xpath("//input[@value='07/07/2020']");
 	By bookingPanel_button_searchbooking = By.id("aa-web-search-button");
-	
 	
 	// LoginSignUp Panel Element locator
 	By loginSignupPanel_entryField_username = By.xpath("//*[@id=\"sso-login-email-input\"]");

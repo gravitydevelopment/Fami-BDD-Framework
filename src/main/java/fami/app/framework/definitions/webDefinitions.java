@@ -2,9 +2,9 @@ package fami.app.framework.definitions;
 
 import cucumber.api.DataTable;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+//import org.eclipse.jetty.util.log.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +17,7 @@ import org.testng.Assert;
 import fami.app.framework.AutomationRunner;
 import fami.app.framework.engine.config;
 import fami.app.framework.helpers.testLogger;
-import fami.app.framework.helpers.webActions;
+//import net.sourceforge.htmlunit.corejs.javascript.debug.DebugFrame;
 
 /**
  * webDefinitions.java - The webDefinitions class contain a method from the parent
@@ -30,85 +30,46 @@ import fami.app.framework.helpers.webActions;
  * @since    20 June 2020
  */
 
- public class webDefinitions extends webActions {
-
-  private static final testLogger log = testLogger.getLogger("fami.app.framework.definitions.webDefinitions");
-  public static WebDriver driver = AutomationRunner.driver;
-  
-  //static WebDriver staticDriver;
-  static webDefinitions definition;
-
-    private webDefinitions(WebDriver myDriver){
-        super(myDriver,null,null,null,null,null,null,null);
-        myDriver = driver ;
-    }
-
-    private webDefinitions(WebDriver myDriver, DataTable dtTable) {
-        super(myDriver, null, null, null, null, null, null,dtTable);
-        myDriver = driver ;
-    }
-
-    private webDefinitions(WebDriver myDriver, String myUrl, String myPageId) {
-        super(myDriver, null, null, null, myUrl, myPageId, null,null);
-        myDriver = driver ;
-    }
-
-    private webDefinitions(WebDriver myDriver, String myElementType, String myElementLabel, String myElementLocator) {
-        super(myDriver, myElementType, myElementLabel, myElementLocator, null, null, null,null);
-        myDriver = driver ;
-    }
-
-    private webDefinitions(WebDriver myDriver, String myElementType, String myElementLabel, String myElementLocator, DataTable dtTable) {
-        super(myDriver, myElementType, myElementLabel, myElementLocator, null, null, null,dtTable);
-        myDriver = driver ;
-    }
-
-    private webDefinitions(WebDriver myDriver, String myElementType, String myElementLabel, String myElementLocator, String myInput) {
-        super(myDriver, myElementType, myElementLabel, myElementLocator, null, null, myInput,null);
-        myDriver = driver ;
-    }
-
-    private webDefinitions(WebDriver myDriver, String myElementType, String myElementLabel, String myElementLocator,
-                           String myUrl,
-                           String myPageId,
-                           String myInput, DataTable dtTable) {
-        super(myDriver, myElementType, myElementLabel, myElementLocator, myUrl, myPageId, myInput, dtTable);
-        myDriver = driver ;
-    }
-    
-    
-    
-    public static void accessPage(String myUrl, WebDriver myDriver) {
-    	
-    	definition = new webDefinitions(myDriver, myUrl, null);
-    	
-    	if (myUrl.isEmpty()) { log.info("INFO::Fail: The provided url is blank, unable to access the webpage" ); }
-    	else {log.info("INFO::Step: Accessing webpage url: " + myUrl);}
-    	goToUrl();
-    }
-    
-    public static void verifyElement(WebDriver myDriver, By myElement) {
-    	myDriver.findElement(myElement);   
-    }
-    
-    public static void insertValueElement(WebDriver myDriver, By myElement, String myValue) {
-    	myDriver.findElement(myElement).sendKeys(myValue);   
-    }
-    
-    public static void clickElement(WebDriver myDriver, By myElement) {
-    	myDriver.findElement(myElement).click();   
-    }
-    
-    public static void verifyElementTextValue(WebDriver myDriver, By myElement, String myValue) {
-    	String actualValue = myDriver.findElement(myElement).getText();
-        Assert.assertEquals(actualValue.contains(myValue), true);
-    }
-    
-    public static void insertValueAndEnter(WebDriver myDriver, By myElement, String myValue) {
-    	myDriver.findElement(myElement).sendKeys(myValue); 
-    	Actions action = new Actions(myDriver);
-    	action.sendKeys(Keys.ENTER).build().perform();
-    }
+ public class webDefinitions {
+	 
+	 private static final testLogger log = testLogger.getLogger("fami.app.framework.definitions.webDefinitions");
+	 
+	 public static WebDriver driver = AutomationRunner.driver;
+	 
+	 static webDefinitions definition;
+	 
+	 public static void accessPage(String myUrl, WebDriver myDriver) {
+		 
+		 if (myUrl.isEmpty()) { log.info("INFO::Fail: The provided url is blank, unable to access the webpage" ); }
+		 else {log.info("INFO::Step: Accessing webpage url: " + myUrl);}
+		 
+		 myDriver.get(myUrl);
+		 myDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	 }
+	 
+	 public static void verifyElement(WebDriver myDriver, By myElement) {
+		 myDriver.findElement(myElement);   
+	 }
+	 
+	 public static void insertValueElement(WebDriver myDriver, By myElement, String myValue) {
+		 myDriver.findElement(myElement).sendKeys(myValue);   
+	 }
+	 
+	 public static void clickElement(WebDriver myDriver, By myElement) {
+		 myDriver.findElement(myElement).click();
+		 try {Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); }
+	 }
+	 
+	 public static void verifyElementTextValue(WebDriver myDriver, By myElement, String myValue) {
+		 String actualValue = myDriver.findElement(myElement).getText();
+		 Assert.assertEquals(actualValue.contains(myValue), true);
+	 }
+	 
+	 public static void insertValueAndEnter(WebDriver myDriver, By myElement, String myValue) {
+		 myDriver.findElement(myElement).sendKeys(myValue); 
+		 Actions action = new Actions(myDriver);
+		 action.sendKeys(Keys.ENTER).build().perform();
+	 }
   
 //  /**
 //   * This is a test method to verify the web page based on paged id
@@ -125,19 +86,19 @@ import fami.app.framework.helpers.webActions;
 //    verifyPage();
 //  }
 
-  /**
-   * This is a test method to verify the web page based on paged id
-   *
-   * @param harness This is the first input parameter to add the web harness
-   * @param myElementType This is the second input parameter to add the element type either by "id", "xpath", "css"
-   * @param myElementLabel This is the third input parameter to add the element label, for some example a button label. Insert "none" if there is none label.
-   * @param myElementLocator This is the fourth input parameter to add the element locator
-   */
-  public static void verifyElement(String elementName, WebDriver myDriver, String myElementType, String myElementLabel, String myElementLocator) {
-    definition = new webDefinitions(myDriver, myElementType, myElementLabel, myElementLocator);
-    log.info("Verify element object: " + elementName);
-    verifyElementObject();
-  }
+//  /**
+//   * This is a test method to verify the web page based on paged id
+//   *
+//   * @param harness This is the first input parameter to add the web harness
+//   * @param myElementType This is the second input parameter to add the element type either by "id", "xpath", "css"
+//   * @param myElementLabel This is the third input parameter to add the element label, for some example a button label. Insert "none" if there is none label.
+//   * @param myElementLocator This is the fourth input parameter to add the element locator
+//   */
+//  public static void verifyElement(String elementName, WebDriver myDriver, String myElementType, String myElementLabel, String myElementLocator) {
+//    definition = new webDefinitions(myDriver, myElementType, myElementLabel, myElementLocator);
+//    log.info("Verify element object: " + elementName);
+//    verifyElementObject();
+//  }
 //
 //  /**
 //   * This is a test method to execute the action of clicking the button object

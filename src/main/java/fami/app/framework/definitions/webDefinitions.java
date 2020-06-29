@@ -35,7 +35,7 @@ public class webDefinitions {
 	public static void accessPage(String myUrl) {
 		
 		if (myUrl.isEmpty()) { log.error("The provided url is blank, unable to access the webpage" );}
-		else { log.info("STEP::Accessing webpage url: " + myUrl); }
+		else { log.info("Accessing webpage url: " + myUrl); }
 		
 		driver.get(myUrl);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -47,7 +47,8 @@ public class webDefinitions {
 	 * @param myElement Web element locator (either xpath, id, css, class, name)
 	 */
 	public static void verifyElement(By myElement) {
-		driver.findElement(myElement);   
+		driver.findElement(myElement);
+		log.info("Verifying element: " + myElement);
 	}
 
 	/**
@@ -58,6 +59,7 @@ public class webDefinitions {
 	 */
 	public static void insertValueElement(By myElement, String myValue) {
 		driver.findElement(myElement).sendKeys(myValue);   
+		log.info("Inserting value " + "\"" + myValue + "\"" + " element: " + myElement);
 	}
 
 	/**
@@ -70,6 +72,7 @@ public class webDefinitions {
 		driver.findElement(myElement).sendKeys(myValue); 
 		Actions action = new Actions(driver);
 		action.sendKeys(Keys.ENTER).build().perform();
+		log.info("Inserting value " + "\"" + myValue + "\"" + " element: " + myElement + " and pressing enter key");
 	}
 
 	/**
@@ -80,6 +83,7 @@ public class webDefinitions {
 	public static void clickElement(By myElement) {
 		driver.findElement(myElement).click();
 		try {Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); }
+		log.info("Clicking element: " + myElement);
 	}
 
 	/**
@@ -91,6 +95,7 @@ public class webDefinitions {
 	public static void verifyElementTextValue(By myElement, String myValue) {
 		String actualValue = driver.findElement(myElement).getText();
 		Assert.assertEquals(actualValue.contains(myValue), true);
+		log.info("Verify text value of the element: " + myElement + "are equal to " + "\"" + myValue + "\"");
 	}
 
 }

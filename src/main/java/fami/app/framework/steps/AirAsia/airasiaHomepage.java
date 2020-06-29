@@ -1,10 +1,9 @@
-package fami.app.framework.steps;
+package fami.app.framework.steps.AirAsia;
 
 import org.openqa.selenium.By;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import fami.app.framework.definitions.webDefinitions;
-import fami.app.framework.helpers.testLogger;
 
 
 /**
@@ -16,9 +15,7 @@ import fami.app.framework.helpers.testLogger;
  */
 
 public class airasiaHomepage {
-	
-	private static final testLogger log = testLogger.getLogger("fami.app.framework.steps.airasiaHomepage");
-	
+		
 	/** Element Definitions **/
 	
 	// Top Panel Element locator

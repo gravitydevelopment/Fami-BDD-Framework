@@ -29,7 +29,7 @@ public class AutomationRunner {
 		selenium.getDriverConfig(props);				
 		driver = selenium.setupWebDriver(driver);
 		
-		log.debug("Fami log debug on");
+		log.debug("Webdriver object initialized");
 		
 		org.junit.runner.JUnitCore.main("fami.app.framework.cucumberRunner");
 		

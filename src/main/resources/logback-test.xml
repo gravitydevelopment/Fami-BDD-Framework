@@ -9,7 +9,7 @@
 				    
   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>logs/dadtf_TestReport.%d{yyyy-MM-dd}.log</fileNamePattern>
+      <fileNamePattern>logs/test_%d{yyyyMMdd}_T%d{HHmmss}.log</fileNamePattern>
 	    <maxHistory>7</maxHistory>
        </rollingPolicy>
        <encoder>

@@ -4,8 +4,9 @@ Fami Behavior Driven Development (BDD) Framework. This framework incorporate the
 
 # Where to start
 - First you need to have install git client in your local machine. I'm highly recommended to use this git client: https://git-scm.com/downloads.
-- Then you need to have java jdk 1.8, maven 3.6.3 install in your local machine. 
-- After all of that is done, you can start cloning this repository by executing this command from you console:
+- Then you need to have java jdk 1.8, maven 3.6.3 install in your local machine.
+- Due to the compatibility sensitivity of the webdriver, current used chromedriver on this framework only supported for Chrome version 83 only.
+- After aboved mentioned setup is done, you can start cloning this repository by executing this command from you console:
 ```
 git clone https://github.com/gravitydevelopment/Fami-BDD-Framework.git
 ```
@@ -29,7 +30,8 @@ git clone https://github.com/gravitydevelopment/Fami-BDD-Framework.git
     - Once report successfully generated, access cluecumber test report folder in a generated target folder "~/Fami-BDD-Framework/targetcluecumber-report"
     - Open the html file "index.html" to view the test report.
     - Apart from that, the framework also generate a log file. The log file can be access at "~/Fami-BDD-Framework/logs".
-    
+ 
+ &nbsp;
     
 2. Execute through virtual container instance by using docker
     - First you need to setup the docker and your windows. You can follow this guideline: https://docs.docker.com/docker-for-windows/install/ 

@@ -21,7 +21,7 @@ import fami.app.framework.engine.config;
 
 public class selenium {
 	
-	private static String browser, webDriver;
+	private static String browser;
 	
 	public static WebDriver setupWebDriver(WebDriver myDriver) { 
 		myDriver = initialize(myDriver); 
@@ -35,7 +35,6 @@ public class selenium {
 		browser = config.getConfig("selenium.properties","browser.type");
 		
 		if (browser.equals("chrome")||browser.equals("chromeheadless")) {
-			webDriver = config.getConfig("selenium.properties","webdriver.chrome.driver");
 			
 			if (SystemUtils.IS_OS_LINUX) {
 				System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver"); }
@@ -44,11 +43,9 @@ public class selenium {
 			}
 			
 		} else if (browser.equals("firefox")) {
-			webDriver = config.getConfig("selenium.properties","webdriver.gecko.driver");
 			System.setProperty("webdriver.gecko.driver", webdriverPath + "geckodriver-v0.26.0-win64.exe");
 
 		} else if (browser.equals("ie")) { 
-			webDriver = config.getConfig("selenium.properties","webdriver.ie.driver");
 			System.setProperty("webdriver.ie.driver", webdriverPath + "IEDriverServer_Win32_3.150.1.exe");
 		}		
 	}

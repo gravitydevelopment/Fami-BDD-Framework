@@ -1,16 +1,16 @@
 pipeline {
     agent any
 	
+	tools { 
+        maven 'Maven 3.3.9' 
+        jdk 'jdk8' 
+    }
+	
     stages {
-
         stage("Environment Setup") {
-			
 		    steps {
-			
-				def os = System.properties['os.name'].toLowerCase()
-				echo "OS: ${os}"
-			    echo 'INFO:: Verify the Maven environment'
-				bat 'mvn dependecies:analyze'
+			    echo "PATH = ${PATH}"
+                echo "M2_HOME = ${M2_HOME}"
             }
         }
         
